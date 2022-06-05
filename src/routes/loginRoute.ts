@@ -12,4 +12,8 @@ loginRoutes.post('/', validateUserLogin, (req: Request, res: Response, next: Nex
   loginController.login(req, res, next);
 });
 
+loginRoutes.get('/validate', (req: Request, res: Response, next: NextFunction) => {
+  loginController.loginValidate(req, res, next);
+});
+
 export default loginRoutes;
