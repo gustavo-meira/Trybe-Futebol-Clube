@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as cors from 'cors';
 import loginRoutes from './routes/loginRoute';
 import errorMiddleware from './middlewares/errorMiddleware';
+import teamsRoutes from './routes/teamsRoute';
 
 class App {
   public app: express.Express;
@@ -27,6 +28,7 @@ class App {
 
   private routes(): void {
     this.app.use('/login', loginRoutes);
+    this.app.use('/teams', teamsRoutes);
     this.app.use(errorMiddleware);
   }
 
