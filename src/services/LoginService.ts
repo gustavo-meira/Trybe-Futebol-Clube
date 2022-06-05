@@ -6,6 +6,7 @@ import UnauthorizedError from '../errors/UnauthorizedError';
 
 class LoginService implements ILoginService {
   private userRepository = User;
+  private jwt = JWT;
 
   async login(user: userReceived): Promise<[string, userResponse]> {
     const userRegistered = await this.userRepository.findOne({ where: { email: user.email } });
@@ -30,6 +31,21 @@ class LoginService implements ILoginService {
     };
 
     return [token, userResponsed];
+  }
+
+  async loginValidate(token: string): Promise<string> {
+    type decodedUser = {
+      role: string,
+      id: number,
+    };
+
+    const decodedToken = await this.jwt.verifyToken(token) as decodedUser;
+
+    if (!decodedToken) {
+      throw new UnauthorizedError('Invalid token');
+    }
+
+    return decodedToken.role;
   }
 }
 

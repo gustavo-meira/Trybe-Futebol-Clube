@@ -16,6 +16,7 @@ export { userReceived, userResponse };
 
 interface ILoginService {
   login(user: userReceived): Promise<[token, userResponse]>;
+  loginValidate(token: token): Promise<string>;
 }
 
 export default ILoginService;
