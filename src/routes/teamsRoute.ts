@@ -11,4 +11,8 @@ teamsRoutes.get('/', (req: Request, res: Response, next: NextFunction) => {
   teamsController.getAll(req, res, next);
 });
 
+teamsRoutes.get('/:id', (req: Request, res: Response, next: NextFunction) => {
+  teamsController.getById(req, res, next);
+});
+
 export default teamsRoutes;
