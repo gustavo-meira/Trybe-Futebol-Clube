@@ -13,6 +13,15 @@ class TeamsController implements ITeamsController {
       next(err);
     }
   }
+
+  async getById(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const team = await this.teamsService.getById(Number(req.params.id));
+      res.status(200).json(team);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default TeamsController;
