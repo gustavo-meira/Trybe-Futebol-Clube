@@ -5,6 +5,7 @@ type TeamType = {
 
 interface ITeamsService {
   getAll(): Promise<TeamType[]>;
+  getById(id: number): Promise<TeamType>;
 }
 
 export { TeamType };
