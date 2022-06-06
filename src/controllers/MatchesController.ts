@@ -26,6 +26,16 @@ class MatchesController implements IMatchesController {
       next(err);
     }
   }
+
+  async finish(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { id } = req.params;
+      const finished = await this.matchesService.finish(Number(id));
+      res.status(200).json({ message: finished });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default MatchesController;
