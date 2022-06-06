@@ -14,6 +14,18 @@ class MatchesController implements IMatchesController {
       next(err);
     }
   }
+
+  async create(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { homeTeam, homeTeamGoals, awayTeam, awayTeamGoals, inProgress } = req.body;
+      const match = await this.matchesService.create(
+        { homeTeam, homeTeamGoals, awayTeam, awayTeamGoals, inProgress },
+      );
+      res.status(201).json(match);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default MatchesController;
