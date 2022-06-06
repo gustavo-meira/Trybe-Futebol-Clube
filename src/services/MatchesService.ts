@@ -29,6 +29,15 @@ class MatchesService implements IMatchesService {
     await this.matchRepository.update({ inProgress: false }, { where: { id } });
     return 'Finished';
   }
+
+  async update(id: number, match: MatchType): Promise<string> {
+    if (match === undefined) {
+      await this.matchRepository.update({ inProgress: false }, { where: { id } });
+    } else {
+      await this.matchRepository.update(match, { where: { id } });
+    }
+    return 'Updated';
+  }
 }
 
 export default MatchesService;

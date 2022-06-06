@@ -8,10 +8,16 @@ type MatchType = {
   inProgress: boolean,
 };
 
+type MatchToUpdateType = {
+  homeTeamGoals: number,
+  awayTeamGoals: number,
+};
+
 interface IMatchesService {
-  getAll(inProgress: string | undefined): Promise<Match[]>;
+  getAll(inProgress?: string): Promise<Match[]>;
   create(match: MatchType): Promise<Match>;
   finish(id: number): Promise<string>;
+  update(id: number, match?: MatchToUpdateType): Promise<string>;
 }
 
 export { MatchType };
