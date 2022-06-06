@@ -23,4 +23,8 @@ matchesRoutes.post(
   },
 );
 
+matchesRoutes.patch('/:id/finish', (req: Request, res: Response, next: NextFunction) => {
+  matchesController.finish(req, res, next);
+});
+
 export default matchesRoutes;
