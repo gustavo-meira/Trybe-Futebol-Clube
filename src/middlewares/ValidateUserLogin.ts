@@ -9,7 +9,6 @@ const validatePassword = (password: string) => {
 
 const validateEmail = (email: string) => {
   if (email === '' || email === undefined) throw new BadRequestError('All fields must be filled');
-  console.log('email', email);
   if (!email.includes('@')) throw new BadRequestError('Email must be valid');
 };
 
