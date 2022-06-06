@@ -11,6 +11,7 @@ type MatchType = {
 interface IMatchesService {
   getAll(inProgress: string | undefined): Promise<Match[]>;
   create(match: MatchType): Promise<Match>;
+  finish(id: number): Promise<string>;
 }
 
 export { MatchType };

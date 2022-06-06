@@ -24,6 +24,11 @@ class MatchesService implements IMatchesService {
   async create(match: MatchType): Promise<Match> {
     return this.matchRepository.create(match);
   }
+
+  async finish(id: number): Promise<string> {
+    await this.matchRepository.update({ inProgress: false }, { where: { id } });
+    return 'Finished';
+  }
 }
 
 export default MatchesService;
