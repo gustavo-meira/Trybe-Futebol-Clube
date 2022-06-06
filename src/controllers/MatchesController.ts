@@ -36,6 +36,17 @@ class MatchesController implements IMatchesController {
       next(err);
     }
   }
+
+  async update(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const id = Number(req.params.id);
+      const { homeTeamGoals, awayTeamGoals } = req.body;
+      const updated = await this.matchesService.update(id, { homeTeamGoals, awayTeamGoals });
+      res.status(200).json({ message: updated });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default MatchesController;
