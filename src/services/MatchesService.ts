@@ -1,4 +1,4 @@
-import IMatchesService from './IMatchesService';
+import IMatchesService, { MatchType } from './IMatchesService';
 import Match from '../database/models/match';
 import Team from '../database/models/team';
 
@@ -19,6 +19,10 @@ class MatchesService implements IMatchesService {
     teamOptions.where = { inProgress: inProgressBool };
 
     return this.matchRepository.findAll(teamOptions);
+  }
+
+  async create(match: MatchType): Promise<Match> {
+    return this.matchRepository.create(match);
   }
 }
 
