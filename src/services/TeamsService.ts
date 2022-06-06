@@ -12,7 +12,7 @@ class TeamsService implements ITeamsService {
   async getById(id: number): Promise<Team> {
     const team = await this.teamRepository.findOne({ where: { id } });
     if (!team) {
-      throw new NotFoundError('Team not found');
+      throw new NotFoundError('There is no team with such id!');
     }
     return team;
   }
